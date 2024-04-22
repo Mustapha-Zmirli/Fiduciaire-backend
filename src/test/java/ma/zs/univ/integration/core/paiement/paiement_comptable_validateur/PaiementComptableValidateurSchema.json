@@ -1,0 +1,16 @@
+{
+    "code": "#string",
+    "demande": {"id": "#number"},
+    "montant": "#number",
+    "comptableValidateur": {"id": "#number"},
+    "typePaiement": {"id": "#number"},
+
+}
+
+
+
+
+
+
+
+

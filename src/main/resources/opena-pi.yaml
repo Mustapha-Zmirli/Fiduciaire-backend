@@ -1,0 +1,975 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /typeDemandes:
+    get:
+      summary: List all typeDemandes
+      operationId: listTypeDemandes
+      tags:
+        - typeDemandes
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of typeDemandes
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/TypeDemandes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a typeDemande
+      operationId: createTypeDemandes
+      tags:
+        - typeDemandes
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /typeDemandes/{typeDemandeId}:
+    get:
+      summary: Info for a specific typeDemande
+      operationId: showTypeDemandeById
+      tags:
+        - typeDemandes
+      parameters:
+        - name: typeDemandeId
+          in: path
+          required: true
+          description: The id of the typeDemande to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/TypeDemandes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /typePaiements:
+    get:
+      summary: List all typePaiements
+      operationId: listTypePaiements
+      tags:
+        - typePaiements
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of typePaiements
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/TypePaiements'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a typePaiement
+      operationId: createTypePaiements
+      tags:
+        - typePaiements
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /typePaiements/{typePaiementId}:
+    get:
+      summary: Info for a specific typePaiement
+      operationId: showTypePaiementById
+      tags:
+        - typePaiements
+      parameters:
+        - name: typePaiementId
+          in: path
+          required: true
+          description: The id of the typePaiement to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/TypePaiements'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /comptables:
+    get:
+      summary: List all comptables
+      operationId: listComptables
+      tags:
+        - comptables
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of comptables
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Comptables'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a comptable
+      operationId: createComptables
+      tags:
+        - comptables
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /comptables/{comptableId}:
+    get:
+      summary: Info for a specific comptable
+      operationId: showComptableById
+      tags:
+        - comptables
+      parameters:
+        - name: comptableId
+          in: path
+          required: true
+          description: The id of the comptable to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/Comptables'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /paiementComptableValidateurs:
+    get:
+      summary: List all paiementComptableValidateurs
+      operationId: listPaiementComptableValidateurs
+      tags:
+        - paiementComptableValidateurs
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of paiementComptableValidateurs
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/PaiementComptableValidateurs'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a paiementComptableValidateur
+      operationId: createPaiementComptableValidateurs
+      tags:
+        - paiementComptableValidateurs
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /paiementComptableValidateurs/{paiementComptableValidateurId}:
+    get:
+      summary: Info for a specific paiementComptableValidateur
+      operationId: showPaiementComptableValidateurById
+      tags:
+        - paiementComptableValidateurs
+      parameters:
+        - name: paiementComptableValidateurId
+          in: path
+          required: true
+          description: The id of the paiementComptableValidateur to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/PaiementComptableValidateurs'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /categoriePieceJoints:
+    get:
+      summary: List all categoriePieceJoints
+      operationId: listCategoriePieceJoints
+      tags:
+        - categoriePieceJoints
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of categoriePieceJoints
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/CategoriePieceJoints'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a categoriePieceJoint
+      operationId: createCategoriePieceJoints
+      tags:
+        - categoriePieceJoints
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /categoriePieceJoints/{categoriePieceJointId}:
+    get:
+      summary: Info for a specific categoriePieceJoint
+      operationId: showCategoriePieceJointById
+      tags:
+        - categoriePieceJoints
+      parameters:
+        - name: categoriePieceJointId
+          in: path
+          required: true
+          description: The id of the categoriePieceJoint to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/CategoriePieceJoints'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /paiementComptableTraitants:
+    get:
+      summary: List all paiementComptableTraitants
+      operationId: listPaiementComptableTraitants
+      tags:
+        - paiementComptableTraitants
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of paiementComptableTraitants
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/PaiementComptableTraitants'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a paiementComptableTraitant
+      operationId: createPaiementComptableTraitants
+      tags:
+        - paiementComptableTraitants
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /paiementComptableTraitants/{paiementComptableTraitantId}:
+    get:
+      summary: Info for a specific paiementComptableTraitant
+      operationId: showPaiementComptableTraitantById
+      tags:
+        - paiementComptableTraitants
+      parameters:
+        - name: paiementComptableTraitantId
+          in: path
+          required: true
+          description: The id of the paiementComptableTraitant to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/PaiementComptableTraitants'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /societes:
+    get:
+      summary: List all societes
+      operationId: listSocietes
+      tags:
+        - societes
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of societes
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Societes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a societe
+      operationId: createSocietes
+      tags:
+        - societes
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /societes/{societeId}:
+    get:
+      summary: Info for a specific societe
+      operationId: showSocieteById
+      tags:
+        - societes
+      parameters:
+        - name: societeId
+          in: path
+          required: true
+          description: The id of the societe to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/Societes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /paiementDemandes:
+    get:
+      summary: List all paiementDemandes
+      operationId: listPaiementDemandes
+      tags:
+        - paiementDemandes
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of paiementDemandes
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/PaiementDemandes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a paiementDemande
+      operationId: createPaiementDemandes
+      tags:
+        - paiementDemandes
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /paiementDemandes/{paiementDemandeId}:
+    get:
+      summary: Info for a specific paiementDemande
+      operationId: showPaiementDemandeById
+      tags:
+        - paiementDemandes
+      parameters:
+        - name: paiementDemandeId
+          in: path
+          required: true
+          description: The id of the paiementDemande to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/PaiementDemandes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /demandePieceJoints:
+    get:
+      summary: List all demandePieceJoints
+      operationId: listDemandePieceJoints
+      tags:
+        - demandePieceJoints
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of demandePieceJoints
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/DemandePieceJoints'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a demandePieceJoint
+      operationId: createDemandePieceJoints
+      tags:
+        - demandePieceJoints
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /demandePieceJoints/{demandePieceJointId}:
+    get:
+      summary: Info for a specific demandePieceJoint
+      operationId: showDemandePieceJointById
+      tags:
+        - demandePieceJoints
+      parameters:
+        - name: demandePieceJointId
+          in: path
+          required: true
+          description: The id of the demandePieceJoint to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/DemandePieceJoints'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /etatDemandes:
+    get:
+      summary: List all etatDemandes
+      operationId: listEtatDemandes
+      tags:
+        - etatDemandes
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of etatDemandes
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/EtatDemandes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a etatDemande
+      operationId: createEtatDemandes
+      tags:
+        - etatDemandes
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /etatDemandes/{etatDemandeId}:
+    get:
+      summary: Info for a specific etatDemande
+      operationId: showEtatDemandeById
+      tags:
+        - etatDemandes
+      parameters:
+        - name: etatDemandeId
+          in: path
+          required: true
+          description: The id of the etatDemande to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/EtatDemandes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /categorieComptables:
+    get:
+      summary: List all categorieComptables
+      operationId: listCategorieComptables
+      tags:
+        - categorieComptables
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of categorieComptables
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/CategorieComptables'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a categorieComptable
+      operationId: createCategorieComptables
+      tags:
+        - categorieComptables
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /categorieComptables/{categorieComptableId}:
+    get:
+      summary: Info for a specific categorieComptable
+      operationId: showCategorieComptableById
+      tags:
+        - categorieComptables
+      parameters:
+        - name: categorieComptableId
+          in: path
+          required: true
+          description: The id of the categorieComptable to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/CategorieComptables'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /demandes:
+    get:
+      summary: List all demandes
+      operationId: listDemandes
+      tags:
+        - demandes
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: A paged array of demandes
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Demandes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create a demande
+      operationId: createDemandes
+      tags:
+        - demandes
+      responses:
+        "201":
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /demandes/{demandeId}:
+    get:
+      summary: Info for a specific demande
+      operationId: showDemandeById
+      tags:
+        - demandes
+      parameters:
+        - name: demandeId
+          in: path
+          required: true
+          description: The id of the demande to retrieve
+          type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          schema:
+            $ref: '#/definitions/Demandes'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  
+
+
+definitions:
+  TypeDemande:
+    type: "object"
+    required:
+      - id
+      - code
+      - libelle
+      - honnoraireComptableTraitant
+      - honnoraireComptableValidateur
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      libelle:
+        type: string
+      honnoraireComptableTraitant:
+        type: number
+      honnoraireComptableValidateur:
+        type: number
+  TypeDemandes:
+    type: array
+    items:
+      $ref: '#/definitions/TypeDemande'
+  TypePaiement:
+    type: "object"
+    required:
+      - id
+      - code
+      - libelle
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      libelle:
+        type: string
+  TypePaiements:
+    type: array
+    items:
+      $ref: '#/definitions/TypePaiement'
+  Comptable:
+    type: "object"
+    required:
+      - id
+      - cin
+      - prenom
+      - nom
+      - email
+      - categorieComptable
+    properties:
+      id:
+        type: int
+      cin:
+        type: string
+      prenom:
+        type: string
+      nom:
+        type: string
+      email:
+        type: string
+      categorieComptable:
+        type: string
+  Comptables:
+    type: array
+    items:
+      $ref: '#/definitions/Comptable'
+  PaiementComptableValidateur:
+    type: "object"
+    required:
+      - id
+      - code
+      - montant
+      - datePaiement
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      montant:
+        type: number
+      datePaiement:
+        type: date
+  PaiementComptableValidateurs:
+    type: array
+    items:
+      $ref: '#/definitions/PaiementComptableValidateur'
+  CategoriePieceJoint:
+    type: "object"
+    required:
+      - id
+      - code
+      - libelle
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      libelle:
+        type: string
+  CategoriePieceJoints:
+    type: array
+    items:
+      $ref: '#/definitions/CategoriePieceJoint'
+  PaiementComptableTraitant:
+    type: "object"
+    required:
+      - id
+      - code
+      - montant
+      - datePaiement
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      montant:
+        type: number
+      datePaiement:
+        type: date
+  PaiementComptableTraitants:
+    type: array
+    items:
+      $ref: '#/definitions/PaiementComptableTraitant'
+  Societe:
+    type: "object"
+    required:
+      - id
+      - ice
+      - rc
+    properties:
+      id:
+        type: int
+      ice:
+        type: string
+      rc:
+        type: string
+  Societes:
+    type: array
+    items:
+      $ref: '#/definitions/Societe'
+  PaiementDemande:
+    type: "object"
+    required:
+      - id
+      - code
+      - montant
+      - datePaiement
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      montant:
+        type: number
+      datePaiement:
+        type: date
+  PaiementDemandes:
+    type: array
+    items:
+      $ref: '#/definitions/PaiementDemande'
+  DemandePieceJoint:
+    type: "object"
+    required:
+      - id
+      - code
+      - libelle
+      - path
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      libelle:
+        type: string
+      path:
+        type: string
+  DemandePieceJoints:
+    type: array
+    items:
+      $ref: '#/definitions/DemandePieceJoint'
+  EtatDemande:
+    type: "object"
+    required:
+      - id
+      - code
+      - libelle
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      libelle:
+        type: string
+  EtatDemandes:
+    type: array
+    items:
+      $ref: '#/definitions/EtatDemande'
+  CategorieComptable:
+    type: "object"
+    required:
+      - id
+      - code
+      - libelle
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      libelle:
+        type: string
+  CategorieComptables:
+    type: array
+    items:
+      $ref: '#/definitions/CategorieComptable'
+  Demande:
+    type: "object"
+    required:
+      - id
+      - code
+      - libelle
+      - dateDemande
+      - dateExigibilite
+      - dateValidation
+      - dateTraitement
+    properties:
+      id:
+        type: int
+      code:
+        type: string
+      libelle:
+        type: string
+      dateDemande:
+        type: date
+      dateExigibilite:
+        type: date
+      dateValidation:
+        type: date
+      dateTraitement:
+        type: date
+  Demandes:
+    type: array
+    items:
+      $ref: '#/definitions/Demande'
+
+  Error:
+    type: "object"
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string

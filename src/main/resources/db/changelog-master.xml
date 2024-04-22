@@ -1,0 +1,19 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+            <include file="classpath:db/migration/changelog/demande/TypeDemande.xml"/>
+        <include file="classpath:db/migration/changelog/paiement/TypePaiement.xml"/>
+        <include file="classpath:db/migration/changelog/commun/Comptable.xml"/>
+        <include file="classpath:db/migration/changelog/paiement/PaiementComptableValidateur.xml"/>
+        <include file="classpath:db/migration/changelog/commun/CategoriePieceJoint.xml"/>
+        <include file="classpath:db/migration/changelog/paiement/PaiementComptableTraitant.xml"/>
+        <include file="classpath:db/migration/changelog/commun/Societe.xml"/>
+        <include file="classpath:db/migration/changelog/paiement/PaiementDemande.xml"/>
+        <include file="classpath:db/migration/changelog/demande/DemandePieceJoint.xml"/>
+        <include file="classpath:db/migration/changelog/demande/EtatDemande.xml"/>
+        <include file="classpath:db/migration/changelog/commun/CategorieComptable.xml"/>
+        <include file="classpath:db/migration/changelog/demande/Demande.xml"/>
+
+</databaseChangeLog>

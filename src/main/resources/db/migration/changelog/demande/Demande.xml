@@ -1,0 +1,101 @@
+<!-- db/changelog-1.1-container.xml -->
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+  <!-- Create Container Table -->
+    <changeSet id="1" author="your-name">
+    <createTable tableName="demande">
+      <column name="id" type="BIGINT">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+        <column name="code" type="VARCHAR(500)"/>
+        <column name="libelle" type="VARCHAR(500)"/>
+        <column name="date_demande" type="TIMESTAMP"/>
+        <column name="date_exigibilite" type="TIMESTAMP"/>
+        <column name="date_validation" type="TIMESTAMP"/>
+        <column name="date_traitement" type="TIMESTAMP"/>
+
+        <column name="societe_id" type="BIGINT">
+          <constraints nullable="false"/>
+        </column>
+        <column name="type_demande_id" type="BIGINT">
+          <constraints nullable="false"/>
+        </column>
+        <column name="etat_demande_id" type="BIGINT">
+          <constraints nullable="false"/>
+        </column>
+        <column name="comptable_validateur_id" type="BIGINT">
+          <constraints nullable="false"/>
+        </column>
+        <column name="comptable_traitant_id" type="BIGINT">
+          <constraints nullable="false"/>
+        </column>
+
+    </createTable>
+  </changeSet>
+
+    <!-- Add foreign key constraint -->
+  <changeSet id="2" author="your-name">
+      <addForeignKeyConstraint
+              baseTableName="demande"
+              baseColumnNames="societe_id"
+              referencedTableName="societe"
+              referencedColumnNames="id"
+              constraintName="fk_demande_societe"/>
+      <addForeignKeyConstraint
+              baseTableName="demande"
+              baseColumnNames="type_demande_id"
+              referencedTableName="type_demande"
+              referencedColumnNames="id"
+              constraintName="fk_demande_type_demande"/>
+      <addForeignKeyConstraint
+              baseTableName="demande"
+              baseColumnNames="etat_demande_id"
+              referencedTableName="etat_demande"
+              referencedColumnNames="id"
+              constraintName="fk_demande_etat_demande"/>
+      <addForeignKeyConstraint
+              baseTableName="demande"
+              baseColumnNames="comptable_validateur_id"
+              referencedTableName="comptable_validateur"
+              referencedColumnNames="id"
+              constraintName="fk_demande_comptable_validateur"/>
+      <addForeignKeyConstraint
+              baseTableName="demande"
+              baseColumnNames="comptable_traitant_id"
+              referencedTableName="comptable_traitant"
+              referencedColumnNames="id"
+              constraintName="fk_demande_comptable_traitant"/>
+
+  </changeSet>
+
+    <!-- Create Sequence for ContainerType -->
+  <changeSet id="3" author="your-name">
+    <createSequence sequenceName="demande_seq" startValue="1" incrementBy="1"/>
+  </changeSet>
+
+  <!-- Load Data from CSV -->
+  <changeSet id="4" author="your-name">
+    <loadData
+            file="classpath:/db/migration/data/demande/Demande.csv"
+            tableName="demande">
+      <column name="id" type="NUMERIC"/>
+          <column name="code" type="VARCHAR(500)"/>
+          <column name="libelle" type="VARCHAR(500)"/>
+          <column name="date_demande" type="TIMESTAMP"/>
+          <column name="date_exigibilite" type="TIMESTAMP"/>
+          <column name="date_validation" type="TIMESTAMP"/>
+          <column name="date_traitement" type="TIMESTAMP"/>
+        <column name="societe" type="BIGINT"/>
+        <column name="type_demande" type="BIGINT"/>
+        <column name="etat_demande" type="BIGINT"/>
+        <column name="comptable_validateur" type="BIGINT"/>
+        <column name="comptable_traitant" type="BIGINT"/>
+    </loadData>
+  </changeSet>
+
+
+</databaseChangeLog>

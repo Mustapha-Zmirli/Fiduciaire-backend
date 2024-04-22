@@ -1,0 +1,18 @@
+{
+    "code": "#string",
+    "libelle": "#string",
+    "societe": {"id": "#number"},
+    "typeDemande": {"id": "#number"},
+    "etatDemande": {"id": "#number"},
+    "comptableValidateur": {"id": "#number"},
+    "comptableTraitant": {"id": "#number"},
+
+}
+
+
+
+
+
+
+
+

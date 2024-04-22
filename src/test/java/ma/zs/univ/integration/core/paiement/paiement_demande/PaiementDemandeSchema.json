@@ -1,0 +1,15 @@
+{
+    "code": "#string",
+    "montant": "#number",
+    "demande": {"id": "#number"},
+    "typePaiement": {"id": "#number"}
+
+}
+
+
+
+
+
+
+
+
