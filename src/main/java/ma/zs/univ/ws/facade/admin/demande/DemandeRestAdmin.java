@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import ma.zs.univ.bean.core.demande.Demande;
 import ma.zs.univ.dao.criteria.core.demande.DemandeCriteria;
 import ma.zs.univ.service.facade.admin.demande.DemandeAdminService;
+import ma.zs.univ.service.impl.admin.demande.DemandeAdminServiceImpl;
 import ma.zs.univ.ws.converter.demande.DemandeConverter;
 import ma.zs.univ.ws.dto.demande.DemandeDto;
 import ma.zs.univ.zynerator.controller.AbstractController;
@@ -180,12 +181,23 @@ public class DemandeRestAdmin  extends AbstractController<Demande, DemandeDto, D
         return super.getDataSize(criteria);
     }
 
+    @GetMapping("demandeTraite")
+    public List<Demande> getDemandeTraite() {
+        return demandeAdminService.getDemandeTraite();
+    }
 
+
+    @PutMapping("{code}")
+    public int validerDemande(@PathVariable String code) {
+        return demandeAdminService.validerDemande(code);
+    }
 
     public DemandeRestAdmin (DemandeAdminService service, DemandeConverter converter) {
         super(service, converter);
     }
 
+    @Autowired
+    private DemandeAdminServiceImpl demandeAdminService;
 
 
 

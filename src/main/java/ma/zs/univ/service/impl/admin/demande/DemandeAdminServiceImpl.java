@@ -2,12 +2,13 @@ package ma.zs.univ.service.impl.admin.demande;
 
 
 import ma.zs.univ.bean.core.demande.Demande;
+import ma.zs.univ.bean.core.demande.EtatDemande;
 import ma.zs.univ.dao.criteria.core.demande.DemandeCriteria;
 import ma.zs.univ.dao.facade.core.demande.DemandeDao;
+import ma.zs.univ.dao.facade.core.demande.EtatDemandeDao;
 import ma.zs.univ.dao.specification.core.demande.DemandeSpecification;
 import ma.zs.univ.service.facade.admin.demande.DemandeAdminService;
 import ma.zs.univ.zynerator.service.AbstractServiceImpl;
-import ma.zs.univ.zynerator.util.ListUtil;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.ArrayList;
@@ -19,22 +20,41 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ma.zs.univ.service.facade.admin.commun.SocieteAdminService ;
-import ma.zs.univ.bean.core.commun.Societe ;
 import ma.zs.univ.service.facade.admin.demande.EtatDemandeAdminService ;
-import ma.zs.univ.bean.core.demande.EtatDemande ;
 import ma.zs.univ.service.facade.admin.demande.TypeDemandeAdminService ;
-import ma.zs.univ.bean.core.demande.TypeDemande ;
 import ma.zs.univ.service.facade.admin.commun.ComptableAdminService ;
-import ma.zs.univ.bean.core.commun.Comptable ;
 
-import java.util.List;
 @Service
 public class DemandeAdminServiceImpl extends AbstractServiceImpl<Demande, DemandeCriteria, DemandeDao> implements DemandeAdminService {
 
 
 
 
+    @Override
+   public int validerDemande(String code){
+       Demande demande = dao.findByCode(code);
+       if (demande == null){
+           return -1;
+       }else {
+           EtatDemande etatDemande = etatDemandeDao.findByCode("d6");
+           demande.setEtatDemande(etatDemande);
+           dao.save(demande);
+           return 1;
+       }
 
+   }
+
+    @Override
+    public List<Demande> getDemandeTraite(){
+        List<Demande> demandes = dao.findAll();
+        List<Demande> demandesTraite =new ArrayList<>();
+         for(Demande demande :demandes){
+             if (demande.getEtatDemande().getLabel().equals("traité")){
+                 demandesTraite.add(demande);
+             }
+         }
+         return demandesTraite;
+    }
 
     public Demande findByReferenceEntity(Demande t){
         return t==null? null : dao.findByCode(t.getCode());
@@ -116,6 +136,8 @@ public class DemandeAdminServiceImpl extends AbstractServiceImpl<Demande, Demand
     private TypeDemandeAdminService typeDemandeService ;
     @Autowired
     private ComptableAdminService comptableService ;
+    @Autowired
+    private EtatDemandeDao etatDemandeDao;
 
     public DemandeAdminServiceImpl(DemandeDao dao) {
         super(dao);
