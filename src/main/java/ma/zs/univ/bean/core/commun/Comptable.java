@@ -23,7 +23,6 @@ import java.util.Objects;
 public class Comptable   extends AuditBusinessObject     {
 
     private Long id;
-
     @Column(length = 500)
     private String cin;
     @Column(length = 500)

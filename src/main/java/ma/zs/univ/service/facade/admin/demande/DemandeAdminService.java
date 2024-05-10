@@ -9,6 +9,11 @@ import ma.zs.univ.zynerator.service.IService;
 
 public interface DemandeAdminService extends  IService<Demande,DemandeCriteria>  {
 
+
+    int validerDemande(String code);
+
+    List<Demande> getDemandeTraite();
+
     List<Demande> findBySocieteId(Long id);
     int deleteBySocieteId(Long id);
     long countBySocieteRc(String rc);
