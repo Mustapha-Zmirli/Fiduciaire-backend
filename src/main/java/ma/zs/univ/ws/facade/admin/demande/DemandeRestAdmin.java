@@ -36,6 +36,7 @@ public class DemandeRestAdmin  extends AbstractController<Demande, DemandeDto, D
 
 
 
+
     @Operation(summary = "upload one demande")
     @RequestMapping(value = "upload", method = RequestMethod.POST, consumes = "multipart/form-data")
     public ResponseEntity<FileTempDto> uploadFileAndGetChecksum(@RequestBody MultipartFile file) throws Exception {
@@ -186,6 +187,28 @@ public class DemandeRestAdmin  extends AbstractController<Demande, DemandeDto, D
         return demandeAdminService.getDemandeTraite();
     }
 
+    @GetMapping("demandeEnAttente")
+    public List<Demande> getDemandeEnAttente() {
+        return demandeAdminService.getDemandeEnAttente();
+    }
+    @GetMapping("demandesAcceptees")
+    public List<Demande> getListDemandesAcceptees() {
+        return demandeAdminService.getListDemandesAcceptees();
+    }
+
+    @PutMapping("accepterDemande/code/{code}")
+    public int accepterDemande(@PathVariable String code){
+        return service.accepterDemande(code);
+    }
+    @PutMapping("refuserDemande/code/{code}")
+    public int refuserDemande(@PathVariable String code){
+        return service.refuserDemande(code);
+    }
+
+    @PutMapping("finaliserDemande/code/{code}")
+    public int finaliserDemande(@PathVariable String code){
+        return service.finaliserDemande(code);
+    }
 
     @PutMapping("{code}")
     public int validerDemande(@PathVariable String code) {
