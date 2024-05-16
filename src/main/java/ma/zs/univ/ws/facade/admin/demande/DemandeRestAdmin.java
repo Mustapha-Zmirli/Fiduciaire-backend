@@ -191,6 +191,10 @@ public class DemandeRestAdmin  extends AbstractController<Demande, DemandeDto, D
     public List<Demande> getDemandeEnAttente() {
         return demandeAdminService.getDemandeEnAttente();
     }
+    @GetMapping("demandesRefusees")
+    public List<Demande> getDemandeRefusee() {
+        return demandeAdminService.getDemandeRefusee();
+    }
     @GetMapping("demandesAcceptees")
     public List<Demande> getListDemandesAcceptees() {
         return demandeAdminService.getListDemandesAcceptees();
@@ -210,10 +214,6 @@ public class DemandeRestAdmin  extends AbstractController<Demande, DemandeDto, D
         return service.finaliserDemande(code);
     }
 
-    @PutMapping("{code}")
-    public int validerDemande(@PathVariable String code) {
-        return demandeAdminService.validerDemande(code);
-    }
 
     public DemandeRestAdmin (DemandeAdminService service, DemandeConverter converter) {
         super(service, converter);

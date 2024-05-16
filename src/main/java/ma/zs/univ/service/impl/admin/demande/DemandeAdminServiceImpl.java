@@ -54,20 +54,6 @@ public class DemandeAdminServiceImpl extends AbstractServiceImpl<Demande, Demand
             return 1;
         }
     }
-
-    @Override
-    public int validerDemande(String code){
-        Demande demande = dao.findByCode(code);
-        if (demande == null){
-            return -1;
-        }else {
-            EtatDemande etatDemande = etatDemandeDao.findByCode("d3");
-            demande.setEtatDemande(etatDemande);
-            dao.save(demande);
-            return 1;
-        }
-
-    }
     @Override
     public List<Demande> getDemandeEnAttente(){
         List<Demande> demandes = dao.findAll();
@@ -78,6 +64,17 @@ public class DemandeAdminServiceImpl extends AbstractServiceImpl<Demande, Demand
             }
         }
         return demandesEnAttente;
+    }
+    @Override
+    public List<Demande> getDemandeRefusee(){
+        List<Demande> demandes = dao.findAll();
+        List<Demande> demandesRefusee =new ArrayList<>();
+        for(Demande demande :demandes){
+            if (demande.getEtatDemande().getLabel().equals("RefuserParComptableTraitant")){
+                demandesRefusee.add(demande);
+            }
+        }
+        return demandesRefusee;
     }
     @Override
     public int accepterDemande(String code){

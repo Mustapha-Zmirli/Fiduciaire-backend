@@ -13,9 +13,9 @@ public interface DemandeAdminService extends  IService<Demande,DemandeCriteria> 
 
     int refuserDemande(String code);
 
-    int validerDemande(String code);
 
     List<Demande> getDemandeEnAttente();
+    List<Demande> getDemandeRefusee();
 
 
     int accepterDemande(String code);
