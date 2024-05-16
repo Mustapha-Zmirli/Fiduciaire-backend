@@ -29,20 +29,76 @@ public class DemandeAdminServiceImpl extends AbstractServiceImpl<Demande, Demand
 
 
 
+    @Override
+    public int refuserDemande(String code) {
+        Demande demande = dao.findByCode(code);
+        if (demande == null){
+            return -1;
+        }else {
+            EtatDemande etatDemande = etatDemandeDao.findByCode("d8");
+            demande.setEtatDemande(etatDemande);
+            dao.save(demande);
+            return 1;
+        }
+    }
 
     @Override
-   public int validerDemande(String code){
-       Demande demande = dao.findByCode(code);
-       if (demande == null){
-           return -1;
-       }else {
-           EtatDemande etatDemande = etatDemandeDao.findByCode("d6");
-           demande.setEtatDemande(etatDemande);
-           dao.save(demande);
-           return 1;
-       }
-
-   }
+    public int finaliserDemande(String code) {
+        Demande demande = dao.findByCode(code);
+        if (demande == null){
+            return -1;
+        }else {
+            EtatDemande etatDemande = etatDemandeDao.findByCode("d2");
+            demande.setEtatDemande(etatDemande);
+            dao.save(demande);
+            return 1;
+        }
+    }
+    @Override
+    public List<Demande> getDemandeEnAttente(){
+        List<Demande> demandes = dao.findAll();
+        List<Demande> demandesEnAttente =new ArrayList<>();
+        for(Demande demande :demandes){
+            if (demande.getEtatDemande().getLabel().equals("comptable traitant en attend")){
+                demandesEnAttente.add(demande);
+            }
+        }
+        return demandesEnAttente;
+    }
+    @Override
+    public List<Demande> getDemandeRefusee(){
+        List<Demande> demandes = dao.findAll();
+        List<Demande> demandesRefusee =new ArrayList<>();
+        for(Demande demande :demandes){
+            if (demande.getEtatDemande().getLabel().equals("RefuserParComptableTraitant")){
+                demandesRefusee.add(demande);
+            }
+        }
+        return demandesRefusee;
+    }
+    @Override
+    public int accepterDemande(String code){
+        Demande demande = dao.findByCode(code);
+        if (demande == null){
+            return -1;
+        }else {
+            EtatDemande etatDemande = etatDemandeDao.findByCode("d5");
+            demande.setEtatDemande(etatDemande);
+            dao.save(demande);
+            return 1;
+        }
+    }
+    @Override
+    public List<Demande> getListDemandesAcceptees(){
+        List<Demande> demandes = dao.findAll();
+        List<Demande> demandesAcceptees =new ArrayList<>();
+        for(Demande demande :demandes){
+            if (demande.getEtatDemande().getLabel().equals("comptable traitant accepté")){
+                demandesAcceptees.add(demande);
+            }
+        }
+        return demandesAcceptees;
+    }
 
     @Override
     public List<Demande> getDemandeTraite(){

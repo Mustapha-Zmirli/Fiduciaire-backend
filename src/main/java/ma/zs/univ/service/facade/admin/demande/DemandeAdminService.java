@@ -9,8 +9,18 @@ import ma.zs.univ.zynerator.service.IService;
 
 public interface DemandeAdminService extends  IService<Demande,DemandeCriteria>  {
 
+    int finaliserDemande(String code);
 
-    int validerDemande(String code);
+    int refuserDemande(String code);
+
+
+    List<Demande> getDemandeEnAttente();
+    List<Demande> getDemandeRefusee();
+
+
+    int accepterDemande(String code);
+
+    List<Demande> getListDemandesAcceptees();
 
     List<Demande> getDemandeTraite();
 
