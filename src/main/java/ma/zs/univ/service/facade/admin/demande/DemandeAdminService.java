@@ -24,6 +24,8 @@ public interface DemandeAdminService extends  IService<Demande,DemandeCriteria> 
 
     List<Demande> getDemandeTraite();
 
+    List<Demande> getDemandeValide();
+
     List<Demande> findBySocieteId(Long id);
     int deleteBySocieteId(Long id);
     long countBySocieteRc(String rc);

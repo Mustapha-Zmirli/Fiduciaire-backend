@@ -186,6 +186,10 @@ public class DemandeRestAdmin  extends AbstractController<Demande, DemandeDto, D
     public List<Demande> getDemandeTraite() {
         return demandeAdminService.getDemandeTraite();
     }
+    @GetMapping("demandeValide")
+    public List<Demande> getDemandeValide() {
+        return demandeAdminService.getDemandeValide();
+    }
 
     @GetMapping("demandeEnAttente")
     public List<Demande> getDemandeEnAttente() {

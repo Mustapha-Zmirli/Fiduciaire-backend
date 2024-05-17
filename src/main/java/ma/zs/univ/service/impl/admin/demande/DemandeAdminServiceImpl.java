@@ -111,6 +111,17 @@ public class DemandeAdminServiceImpl extends AbstractServiceImpl<Demande, Demand
          }
          return demandesTraite;
     }
+    @Override
+    public List<Demande> getDemandeValide(){
+        List<Demande> demandes = dao.findAll();
+        List<Demande> demandesValide =new ArrayList<>();
+         for(Demande demande :demandes){
+             if (demande.getEtatDemande().getLabel().equals("validé")){
+                 demandesValide.add(demande);
+             }
+         }
+         return demandesValide;
+    }
 
     public Demande findByReferenceEntity(Demande t){
         return t==null? null : dao.findByCode(t.getCode());
