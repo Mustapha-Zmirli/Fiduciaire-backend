@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
+import ma.zs.univ.bean.core.demande.Demande;
 import ma.zs.univ.bean.core.paiement.PaiementComptableTraitant;
 import ma.zs.univ.dao.criteria.core.paiement.PaiementComptableTraitantCriteria;
 import ma.zs.univ.service.facade.admin.paiement.PaiementComptableTraitantAdminService;
@@ -17,11 +18,16 @@ import ma.zs.univ.zynerator.util.PaginatedList;
 
 
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import ma.zs.univ.zynerator.process.Result;
 
@@ -158,6 +164,16 @@ public class PaiementComptableTraitantRestAdmin  extends AbstractController<Paie
     @PostMapping("data-size-by-criteria")
     public ResponseEntity<Integer> getDataSize(@RequestBody PaiementComptableTraitantCriteria criteria) throws Exception {
         return super.getDataSize(criteria);
+    }
+
+    @PostMapping("demande/{demande}/cin/{cin}")
+    public ResponseEntity<Map<String, String>> payer(@PathVariable String demande , @PathVariable String cin) {
+
+        service.payer(demande, cin);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Paiement avec succés");
+
+        return ResponseEntity.ok(response);
     }
 
 

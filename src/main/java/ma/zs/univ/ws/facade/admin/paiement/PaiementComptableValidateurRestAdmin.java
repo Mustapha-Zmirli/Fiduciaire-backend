@@ -21,7 +21,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import ma.zs.univ.zynerator.process.Result;
 
@@ -158,6 +161,17 @@ public class PaiementComptableValidateurRestAdmin  extends AbstractController<Pa
     @PostMapping("data-size-by-criteria")
     public ResponseEntity<Integer> getDataSize(@RequestBody PaiementComptableValidateurCriteria criteria) throws Exception {
         return super.getDataSize(criteria);
+    }
+
+    @PostMapping("demande/{demande}/cin/{cin}")
+    public ResponseEntity<Map<String, String>> payerComptableValidateur(@PathVariable String demande, @PathVariable String cin) {
+        service.payerComptableValidateur(demande, cin);
+
+        // Create a JSON response with a success message
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Paiement avec succés");
+
+        return ResponseEntity.ok(response);
     }
 
 
