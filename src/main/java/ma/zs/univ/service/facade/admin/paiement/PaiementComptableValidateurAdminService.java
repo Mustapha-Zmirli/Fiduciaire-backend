@@ -20,6 +20,5 @@ public interface PaiementComptableValidateurAdminService extends  IService<Paiem
     long countByTypePaiementCode(String code);
 
 
-
-
+    void payerComptableValidateur(String demandeCode, String comptableValidateurCin);
 }

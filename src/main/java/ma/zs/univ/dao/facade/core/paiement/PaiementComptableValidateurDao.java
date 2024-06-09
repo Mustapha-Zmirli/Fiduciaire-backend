@@ -14,6 +14,9 @@ public interface PaiementComptableValidateurDao extends AbstractRepository<Paiem
     int deleteByCode(String code);
 
     List<PaiementComptableValidateur> findByDemandeId(Long id);
+
+    PaiementComptableValidateur findByDemandeCode(String code);
+
     int deleteByDemandeId(Long id);
     long countByDemandeCode(String code);
     List<PaiementComptableValidateur> findByComptableValidateurId(Long id);

@@ -1,5 +1,6 @@
 package ma.zs.univ.service.facade.admin.paiement;
 
+import java.math.BigDecimal;
 import java.util.List;
 import ma.zs.univ.bean.core.paiement.PaiementComptableTraitant;
 import ma.zs.univ.dao.criteria.core.paiement.PaiementComptableTraitantCriteria;
@@ -20,6 +21,5 @@ public interface PaiementComptableTraitantAdminService extends  IService<Paiemen
     long countByTypePaiementCode(String code);
 
 
-
-
+    void payer(String demandeCode, String comptableTraitantCin);
 }

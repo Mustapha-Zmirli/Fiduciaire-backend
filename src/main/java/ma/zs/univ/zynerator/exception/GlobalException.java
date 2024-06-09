@@ -1,12 +1,15 @@
 package ma.zs.univ.zynerator.exception;
 
+import javassist.NotFoundException;
 import ma.zs.univ.zynerator.security.bean.User;
 import ma.zs.univ.zynerator.util.Utils;
 import org.apache.catalina.connector.ClientAbortException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -14,9 +17,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GlobalException extends Exception implements Serializable {
     /**
@@ -108,6 +115,19 @@ public class GlobalException extends Exception implements Serializable {
             }
         }
 
+    }
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, String>> handleRuntimeException(RuntimeException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleNotFoundException(NotFoundException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     public String getErrorCode(ConstraintViolationException ex) {

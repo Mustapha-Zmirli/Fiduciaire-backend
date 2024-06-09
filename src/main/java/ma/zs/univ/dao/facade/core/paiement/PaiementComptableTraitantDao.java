@@ -12,7 +12,7 @@ import java.util.List;
 public interface PaiementComptableTraitantDao extends AbstractRepository<PaiementComptableTraitant,Long>  {
     PaiementComptableTraitant findByCode(String code);
     int deleteByCode(String code);
-
+    PaiementComptableTraitant findByDemandeCode(String code);
     List<PaiementComptableTraitant> findByDemandeId(Long id);
     int deleteByDemandeId(Long id);
     long countByDemandeCode(String code);
