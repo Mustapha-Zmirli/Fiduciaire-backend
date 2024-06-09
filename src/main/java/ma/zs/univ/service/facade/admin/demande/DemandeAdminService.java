@@ -20,6 +20,8 @@ public interface DemandeAdminService extends  IService<Demande,DemandeCriteria> 
 
     int accepterDemande(String code);
 
+    int validerDemande(String code);
+
     List<Demande> getListDemandesAcceptees();
 
     List<Demande> getDemandeTraite();

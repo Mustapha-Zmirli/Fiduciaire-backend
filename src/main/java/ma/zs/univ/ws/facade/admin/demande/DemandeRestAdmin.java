@@ -186,6 +186,11 @@ public class DemandeRestAdmin  extends AbstractController<Demande, DemandeDto, D
     public List<Demande> getDemandeTraite() {
         return demandeAdminService.getDemandeTraite();
     }
+
+    @PutMapping("{code}")
+    public int validerDemande(@PathVariable String code) {
+        return demandeAdminService.validerDemande(code);
+    }
     @GetMapping("demandeValide")
     public List<Demande> getDemandeValide() {
         return demandeAdminService.getDemandeValide();
@@ -212,6 +217,7 @@ public class DemandeRestAdmin  extends AbstractController<Demande, DemandeDto, D
     public int refuserDemande(@PathVariable String code){
         return service.refuserDemande(code);
     }
+
 
     @PutMapping("finaliserDemande/code/{code}")
     public int finaliserDemande(@PathVariable String code){
