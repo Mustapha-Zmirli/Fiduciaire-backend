@@ -89,6 +89,19 @@ public class DemandeAdminServiceImpl extends AbstractServiceImpl<Demande, Demand
         }
     }
     @Override
+    public int validerDemande(String code){
+        Demande demande = dao.findByCode(code);
+        if (demande == null){
+            return -1;
+        }else {
+            EtatDemande etatDemande = etatDemandeDao.findByCode("d6");
+            demande.setEtatDemande(etatDemande);
+            dao.save(demande);
+            return 1;
+        }
+
+    }
+    @Override
     public List<Demande> getListDemandesAcceptees(){
         List<Demande> demandes = dao.findAll();
         List<Demande> demandesAcceptees =new ArrayList<>();
